@@ -1,13 +1,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
 
 const About = () => {
+  const { t } = useTranslation();
+
     return (
         <main>
             <section className="lc-bg-section lc-about-bg">
                 <div className="container">
-                    <h1 className="lc-bg-title">О компании</h1>
+                    <h1 className="lc-bg-title">{t('about')}</h1>
                 </div>
             </section>
             <section className="lc-page-section">
@@ -15,7 +18,7 @@ const About = () => {
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                             <li className="breadcrumb-item">
-                                <Link href="/">Главная</Link>
+                                <Link href="/">{t('home')}</Link>
                             </li>
                             <li className="breadcrumb-item active">О компании</li>
                         </ol>

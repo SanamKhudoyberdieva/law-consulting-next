@@ -1,20 +1,47 @@
+import React from 'react';
 import Image from 'next/image';
-import React from 'react'
+import { useDispatch } from 'react-redux';
+import { Dropdown } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
+import { setLanguage } from '../store/slices/languageSlice';
+
+export const languages = [
+  { code: 'ru', name: 'Русский' },
+  { code: 'uz', name: "O'zbek" },
+  { code: 'en', name: 'English' },
+];
 
 const LangDropdown = () => {
+  const dispatch = useDispatch()
+  const { i18n } = useTranslation();
+
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    dispatch(setLanguage(lng))
+  };
+  
   return (
-    <div className="dropdown">
-        <button className="btn lc-language-dropdown dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            <Image src={require("../assets/img/ic_global.svg")} className="me-1" alt="global" />
-            <span className='sm-hide'>Русский</span>
-        </button>
-        <ul className="dropdown-menu lc-dropdown-menu">
-            <li><a className="dropdown-item" href="#">O'zbekcha</a></li>
-            <li><a className="dropdown-item active" href="#">Русский</a></li>
-            <li><a className="dropdown-item" href="#">English</a></li>
-        </ul>
-    </div>
+    <Dropdown className="dropdown">
+      <Dropdown.Toggle className="btn lc-language-dropdown dropdown-toggle">
+        <Image src={require("../assets/img/ic_global.svg")} className="me-1" alt="global" />
+        <span className='sm-hide'>
+          {i18n.language === 'ru' ? 'Русский' : i18n.language === 'uz' ? "O'zbek" : 'English'}
+        </span>
+      </Dropdown.Toggle>
+      <Dropdown.Menu 
+        className="dropdown-menu lc-dropdown-menu"
+      >
+        {languages.map((lang) => (
+          <Dropdown.Item 
+            key={lang.code}
+            className={i18n.language === lang.code ? "active" : ''} 
+            onClick={() => changeLanguage(lang.code)}
+          >
+            {lang.name}
+          </Dropdown.Item>
+        ))}
+      </Dropdown.Menu>
+    </Dropdown>
   )
 }
 

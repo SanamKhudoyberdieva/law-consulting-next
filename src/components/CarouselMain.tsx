@@ -2,8 +2,11 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next';
 
 const CarouselMain = () => {
+  const { t } = useTranslation();
+
   const CustomPrevIcon = () => (
     <button className="carousel-control-prev" type="button">
       <span className="carousel-control-prev-icon"></span>
@@ -39,7 +42,7 @@ const CarouselMain = () => {
                   Kosta Legal advises Sberbank on selling Akhangarancement
                 </div>
                 <Link href="/" className="lc-btn-dark-transparent lc-color-reverse">
-                  <span>More details</span>
+                  <span>{t('more-details')}</span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -61,7 +64,7 @@ const CarouselMain = () => {
                   Kosta Legal advises Sberbank on selling Akhangarancement
                 </div>
                 <Link href="/" className="lc-btn-dark-transparent lc-color-reverse">
-                  <span>More details</span>
+                  <span>{t('more-details')}</span>
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />

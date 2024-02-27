@@ -1,18 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTranslation } from 'react-i18next';
+import CarouselMain from '@/src/components/CarouselMain';
 import NewsSlider from '@/src/components/Sliders/NewsSlider';
 import ClientsSlider from '@/src/components/Sliders/ClientsSlider';
 import ServicesSlider from '@/src/components/Sliders/ServicesSlider';
-import CarouselMain from '@/src/components/CarouselMain';
 
 const Home = () => {
+  const { t } = useTranslation();
+
   return (
     <main>
       <CarouselMain />
       <section className="lc-services-section" id="services" data-aos="fade-up">
         <div className="container">
-          <h2 className="lc-section-title">Services</h2>
+          <h2 className="lc-section-title">{t('services')}</h2>
         </div>
         <ServicesSlider />
       </section>
@@ -24,7 +27,7 @@ const Home = () => {
               <div className="col-md-6">
                 <div className="lc-about-content">
                   <h2 className="lc-section-title text-white text-start" data-aos="fade-right">
-                    About Company
+                    {t('about-company')}
                   </h2>
                   <div className="lc-about-desc" data-aos="fade-right">
                     A low company typically refers to a business or organization
@@ -34,8 +37,8 @@ const Home = () => {
                     organizational structure, with few hierarchical layers and a
                     focus on hands-on management.
                   </div>
-                  <Link href="/" className="lc-btn-dark-transparent lc-color-reverse" data-aos="fade-right">
-                    <span>More details</span>
+                  <Link href="/about" className="lc-btn-dark-transparent lc-color-reverse" data-aos="fade-right">
+                    <span>{t('more-details')}</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M14.43 5.93005L20.5 12.0001L14.43 18.0701" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
                       <path d="M3.49996 12H20.33" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
@@ -54,14 +57,14 @@ const Home = () => {
 
       <section className="lc-clients-section" data-aos="fade-up">
         <div className="container">
-          <h2 className="lc-section-title">Clients</h2>
+          <h2 className="lc-section-title">{t('clients')}</h2>
         </div>
         <ClientsSlider />
       </section>
 
       <section className="lc-news-section">
         <div className="container">
-          <h2 className="lc-section-title" data-aos="fade-up">News</h2>
+          <h2 className="lc-section-title" data-aos="fade-up">{t('news')}</h2>
           <NewsSlider />
         </div>
       </section>

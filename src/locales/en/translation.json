@@ -1,1 +1,13 @@
-{}
+{
+    "about": "About",
+    "team": "Team",
+    "services": "Services",
+    "news": "News",
+    "vacancies": "Vacancies",
+    "contacts": "Contacts",
+    "more-details": "More details",
+    "about-company": "About Company",
+    "clients": "Clients",
+    "home": "Home"
+
+}
