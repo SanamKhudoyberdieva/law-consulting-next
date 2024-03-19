@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslation } from 'react-i18next';
@@ -6,9 +6,33 @@ import CarouselMain from '@/src/components/CarouselMain';
 import NewsSlider from '@/src/components/Sliders/NewsSlider';
 import ClientsSlider from '@/src/components/Sliders/ClientsSlider';
 import ServicesSlider from '@/src/components/Sliders/ServicesSlider';
+import axios from 'axios';
 
 const Home = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null); 
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(`/api/home?lang=${i18n.language}`);
+      setData(response.data);
+    } catch (err) {
+      if (err instanceof Error && err.message) {
+        setError(err.message);
+      } else {
+        setError('An error occurred');
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <main>

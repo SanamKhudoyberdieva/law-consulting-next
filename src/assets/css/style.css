@@ -61,6 +61,7 @@ button {
 }
 .lc-logo img {
   height: 44px;
+  width: auto;
 }
 .lc-navbar-right {
   display: flex;
@@ -485,7 +486,7 @@ footer {
   justify-content: end;
 }
 .carousel-control-prev {
-  left: 0;
+  left: auto;
 }
 .carousel-control-next,
 .carousel-control-prev {
@@ -505,6 +506,9 @@ footer {
   background: 0 0;
   opacity: 1;
   transition: opacity 0.15s ease;
+}
+.carousel-control-next button {
+  right: auto !important;
 }
 .carousel .carousel-control-prev-icon {
   background-image: url(../img/ic_left_w.svg);
@@ -690,9 +694,6 @@ footer {
   margin-top: 0.625rem;
 }
 
-
-
-
 .lc-team-slick .lc-team-wrapper {
   padding: 0 0.625rem;
 }
@@ -801,7 +802,7 @@ footer {
 }
 .lc-contact-title {
   font-size: 2rem;
-  font-family: Newtext ITC Std,Gilroy,sans-serif;
+  font-family: Newtext ITC Std, Gilroy, sans-serif;
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 0.675rem;
@@ -874,10 +875,11 @@ footer {
   bottom: 50%;
   left: 50%;
 }
-.out-btn:before, .out-btn:after {
+.out-btn:before,
+.out-btn:after {
   background: var(--active-color);
   transition: 0.3s ease;
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
   border-radius: 100vh;
@@ -904,7 +906,7 @@ footer {
   color: #000;
   margin-bottom: 1.25rem;
 }
-#sendingResume .modal-fullscreen, 
+#sendingResume .modal-fullscreen,
 #sendingResumeSuccessfully .modal-fullscreen {
   width: 50vw;
   position: absolute;
@@ -996,7 +998,8 @@ footer {
   font-size: 1.2rem;
   text-align: center;
 }
-.slick-prev:before, .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   content: none !important;
 }
 .accordion-button:not(.collapsed) {
@@ -1006,7 +1009,11 @@ footer {
 .accordion-button::after {
   display: none;
 }
-.btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+.btn-check:checked + .btn,
+.btn.active,
+.btn.show,
+.btn:first-child:active,
+:not(.btn-check) + .btn:active {
   color: var(--bs-btn-active-color);
   background-color: inherit;
   border-color: var(--bs-btn-active-border-color);
