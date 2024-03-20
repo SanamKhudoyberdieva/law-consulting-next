@@ -1,8 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { FooterTypes } from '../types/general';
 
-const Footer = () => {
+const Footer = ({ footer }: { footer: FooterTypes }) => {
   return (
     <footer>
       <div className="container">
@@ -30,16 +31,14 @@ const Footer = () => {
           <div className="lc-footer-group text-md-center">
             <div className="lc-footer-logo" data-aos="fade-up">
               <Link href="/">
-                <Image src={require("../assets/img/logo.png")} alt="logo" />
+                <Image src={footer.logo} alt="logo" width={150} height={150} />
               </Link>
             </div>
             <div className="lc-footer-info" data-aos="fade-up">
-              Overall, while low companies may not have the scale or resources
-              of larger corporations, they can still thrive by leveraging their
-              strengths, focusing on customer services.
+              {footer.company_description}
             </div>
             <div className="lc-footer-phone" data-aos="fade-up">
-              <Link href="tel:+998992140101">+998 99 214 01 01</Link>
+              <Link href={`tel:${footer.phone_number}`}>{footer.phone_number}</Link>
             </div>
             <div className="lc-footer-location" data-aos="fade-up">
               <div className="lc-location-ic">
@@ -53,8 +52,7 @@ const Footer = () => {
                 </svg>
               </div>
               <div className="es-location-text">
-                Узбекистан, г. Наманган, Давлатабадский р-н, ул. Мустакиллик,
-                дом 25
+                {footer.address_ru}
               </div>
             </div>
           </div>

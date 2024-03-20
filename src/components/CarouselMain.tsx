@@ -3,8 +3,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { Banner } from '../types/home';
 
-const CarouselMain = () => {
+const CarouselMain = ({ carouselData }: { carouselData: Banner[] }) => {
   const { t } = useTranslation();
 
   const CustomPrevIcon = () => (
@@ -23,56 +24,40 @@ const CarouselMain = () => {
 
   return (
     <div className="position-relative">
-      <Carousel 
-        prevIcon={<CustomPrevIcon />} 
-        nextIcon={<CustomNextIcon />} 
+      <Carousel
+        prevIcon={<CustomPrevIcon />}
+        nextIcon={<CustomNextIcon />}
         className="carousel slide"
       >
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <Image 
-              src={require("../assets/img/bg_banner2.jpeg")} 
-              className="img-fluid w-100" 
-              alt="banner" 
-            />
-            <div className="carousel-backdrop">
-              <div className="lc-carousel-content container" data-aos="fade-right">
-                <div className="carousel-title">Kosta Legal</div>
-                <div className="carousel-info">
-                  Kosta Legal advises Sberbank on selling Akhangarancement
+          {
+            carouselData && carouselData.map((x) => (
+              <div className="carousel-item active" key={"carousel-item-id-" + x.id}>
+                <Image
+                  src={x.desktop_image}
+                  width={1336}
+                  height={500}
+                  className="img-fluid w-100"
+                  alt="banner"
+                />
+                <div className="carousel-backdrop">
+                  <div className="lc-carousel-content container" data-aos="fade-right">
+                    <div className="carousel-title">{x.title_ru}</div>
+                    <div className="carousel-info">
+                      {x.subtitle_ru}
+                    </div>
+                    {x.more_details_link && <Link href={`${x.more_details_link}`} className="lc-btn-dark-transparent lc-color-reverse">
+                      <span>{t('more-details')}</span>
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </Link>}
+                  </div>
                 </div>
-                <Link href="/" className="lc-btn-dark-transparent lc-color-reverse">
-                  <span>{t('more-details')}</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </Link>
               </div>
-            </div>
-          </div>
-          <div className="carousel-item">
-            <Image 
-              src={require("../assets/img/bg_banner.jpeg")} 
-              className="img-fluid w-100" 
-              alt="banner" 
-            />
-            <div className="carousel-backdrop">
-              <div className="lc-carousel-content container" data-aos="fade-right">
-                <div className="carousel-title">Kosta Legal</div>
-                <div className="carousel-info">
-                  Kosta Legal advises Sberbank on selling Akhangarancement
-                </div>
-                <Link href="/" className="lc-btn-dark-transparent lc-color-reverse">
-                  <span>{t('more-details')}</span>
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                    <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
+            ))
+          }
         </div>
       </Carousel>
     </div>

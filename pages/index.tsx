@@ -7,13 +7,14 @@ import NewsSlider from '@/src/components/Sliders/NewsSlider';
 import ClientsSlider from '@/src/components/Sliders/ClientsSlider';
 import ServicesSlider from '@/src/components/Sliders/ServicesSlider';
 import axios from 'axios';
+import { HomeTypes } from '@/src/types/home';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
 
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<HomeTypes | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null); 
+  const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
     try {
@@ -34,14 +35,16 @@ const Home = () => {
     fetchData();
   }, []);
 
+  console.log("data", data)
+  if (!data) return
   return (
     <main>
-      <CarouselMain />
+      <CarouselMain carouselData={data.banners} />
       <section className="lc-services-section" id="services" data-aos="fade-up">
         <div className="container">
           <h2 className="lc-section-title">{t('services')}</h2>
         </div>
-        <ServicesSlider />
+        <ServicesSlider serviceData={data.services} />
       </section>
 
       <section className="lc-about-section">
@@ -54,12 +57,7 @@ const Home = () => {
                     {t('about-company')}
                   </h2>
                   <div className="lc-about-desc" data-aos="fade-right">
-                    A low company typically refers to a business or organization
-                    that operates with limited resources, often characterized by
-                    a small workforce, minimal capital investment, and modest
-                    revenue or profits. These companies may have a simple
-                    organizational structure, with few hierarchical layers and a
-                    focus on hands-on management.
+                    {data.about_company.text_ru}
                   </div>
                   <Link href="/about" className="lc-btn-dark-transparent lc-color-reverse" data-aos="fade-right">
                     <span>{t('more-details')}</span>
@@ -83,13 +81,13 @@ const Home = () => {
         <div className="container">
           <h2 className="lc-section-title">{t('clients')}</h2>
         </div>
-        <ClientsSlider />
+        <ClientsSlider clients={data.clients} />
       </section>
 
       <section className="lc-news-section">
         <div className="container">
           <h2 className="lc-section-title" data-aos="fade-up">{t('news')}</h2>
-          <NewsSlider />
+          <NewsSlider news={data.news} />
         </div>
       </section>
     </main>

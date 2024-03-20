@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     lang = 'en'; // Default to 'en' if lang is not valid
   }
 
-  const apiUrl = `${baseUrl}/api/home?lang=${lang}`;
+  const apiUrl = `${baseUrl}/api/general?lang=${lang}`;
 
   try {
     const response = await axios.get(apiUrl);
