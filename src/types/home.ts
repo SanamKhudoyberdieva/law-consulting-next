@@ -22,7 +22,7 @@ export interface Service {
   title_uz?: string;
 }
 
-export interface Services {
+export interface ServicesType {
   data: Service[]
   main_title: string
 }
@@ -63,10 +63,10 @@ export interface NewsList {
 }
 
 export interface HomeTypes {
-  about_company: AboutCompany;
-  banners: Banner[];
-  clients: Clients;
+  about_company: AboutCompany | null;
+  banners: Banner[] | null;
+  clients: Clients | null;
   language: string;
-  news: NewsList;
-  services: Services;
+  news: NewsList | null;
+  services: ServicesType | null;
 }

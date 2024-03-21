@@ -4,9 +4,10 @@ import Image from 'next/image';
 import { Carousel } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { Banner } from '../types/home';
+import { getSubtitle, getTitle } from '@/utils/custom';
 
-const CarouselMain = ({ carouselData }: { carouselData: Banner[] }) => {
-  const { t } = useTranslation();
+const CarouselMain = ({ carouselData }: { carouselData: Banner[] | null }) => {
+  const { t, i18n } = useTranslation();
 
   const CustomPrevIcon = () => (
     <button className="carousel-control-prev" type="button">
@@ -21,6 +22,8 @@ const CarouselMain = ({ carouselData }: { carouselData: Banner[] }) => {
       <span className="visually-hidden">Next</span>
     </button>
   );
+
+  if (!carouselData) return
 
   return (
     <div className="position-relative">
@@ -42,15 +45,15 @@ const CarouselMain = ({ carouselData }: { carouselData: Banner[] }) => {
                 />
                 <div className="carousel-backdrop">
                   <div className="lc-carousel-content container" data-aos="fade-right">
-                    <div className="carousel-title">{x.title_ru}</div>
+                    <div className="carousel-title">{getTitle(x.title_ru, i18n.language)}</div>
                     <div className="carousel-info">
-                      {x.subtitle_ru}
+                      {getSubtitle(x.subtitle_ru, i18n.language)}
                     </div>
                     {x.more_details_link && <Link href={`${x.more_details_link}`} className="lc-btn-dark-transparent lc-color-reverse">
                       <span>{t('more-details')}</span>
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                        <path d="M2.33334 8H13.5533" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M9.61999 3.95331L13.6667 7.99998L9.61999 12.0466" stroke="white" strokeWidth="1.5" stroke-miterlimit="10" strokeLinecap="round" stroke-linejoin="round" />
+                        <path d="M2.33334 8H13.5533" stroke="white" strokeWidth="1.5" stroke-miterlimit="10" strokeLinecap="round" stroke-linejoin="round" />
                       </svg>
                     </Link>}
                   </div>

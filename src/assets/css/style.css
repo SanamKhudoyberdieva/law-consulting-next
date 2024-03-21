@@ -790,9 +790,13 @@ footer {
   width: 13.75rem;
   color: var(--black-100);
   margin: 0 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lc-nav-pills .lc-nav-link.active {
   background-color: var(--black-100);
+  color: var(--white-100);
 }
 .lc-contacts-content {
   height: 100%;
@@ -1017,4 +1021,8 @@ footer {
   color: var(--bs-btn-active-color);
   background-color: inherit;
   border-color: var(--bs-btn-active-border-color);
+}
+.lc-page-title {
+  font-weight: 500;
+  text-transform: uppercase;
 }

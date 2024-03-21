@@ -4,7 +4,8 @@ import Image from 'next/image';
 import LangDropdown from './LangDropdown';
 import { HeaderTypes } from '../types/general';
 
-const Header = ({ header }: { header: HeaderTypes }) => {
+const Header = ({ header }: { header: HeaderTypes | null }) => {
+  if (!header) return
   return (
     <header className="lc-main-header">
       <div className="container">
@@ -35,8 +36,8 @@ const Header = ({ header }: { header: HeaderTypes }) => {
               <button className="btn lc-hamburger">
                 <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="36" height="36" rx="18" fill="white" />
-                  <path d="M10 15H26" stroke="black" stroke-width="1.5" stroke-linecap="round" />
-                  <path d="M10 21H26" stroke="black" stroke-width="1.5" stroke-linecap="round" />
+                  <path d="M10 15H26" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M10 21H26" stroke="black" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
               </button>
             </div>

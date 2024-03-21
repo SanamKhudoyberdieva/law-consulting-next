@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Slider from 'react-slick';
 import { NewsList } from '@/src/types/home';
 
-const NewsSlider = ({ news }: { news: NewsList }) => {
+const NewsSlider = ({ news }: { news: NewsList | null }) => {
     const settings = {
         dots: false,
         infinite: true,
@@ -37,6 +37,8 @@ const NewsSlider = ({ news }: { news: NewsList }) => {
             }
         ]
     };
+
+    if (!news) return
 
     return (
         <Slider {...settings} className="lc-news-slick" data-aos="fade-up">

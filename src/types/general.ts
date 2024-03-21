@@ -16,6 +16,6 @@ export interface FooterTypes {
 }
 
 export interface General {
-  footer: FooterTypes;
-  header: HeaderTypes;
+  footer: FooterTypes | null;
+  header: HeaderTypes | null;
 }

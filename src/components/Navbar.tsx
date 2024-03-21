@@ -16,7 +16,7 @@ const Navbar = () => {
             <Link href="/team" className="nav-link">{t('team')}</Link>
           </li>
           <li className="nav-item lc-parent-cat">
-            <Link href="/service" className="nav-link">{t('services')}</Link>
+            <Link href="/services" className="nav-link">{t('services')}</Link>
           </li>
           <li className="nav-item lc-parent-cat">
             <Link href="/news" className="nav-link">{t('news')}</Link>

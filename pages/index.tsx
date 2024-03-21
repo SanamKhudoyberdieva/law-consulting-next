@@ -8,34 +8,15 @@ import ClientsSlider from '@/src/components/Sliders/ClientsSlider';
 import ServicesSlider from '@/src/components/Sliders/ServicesSlider';
 import axios from 'axios';
 import { HomeTypes } from '@/src/types/home';
+import { getText } from '@/utils/custom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setHome } from '@/src/store/slices/homeSlice';
+import { RootState } from '@/src/store/store';
 
 const Home = () => {
   const { t, i18n } = useTranslation();
+  const data = useSelector((state: RootState) => state.homeReducer)
 
-  const [data, setData] = useState<HomeTypes | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(`/api/home?lang=${i18n.language}`);
-      setData(response.data);
-    } catch (err) {
-      if (err instanceof Error && err.message) {
-        setError(err.message);
-      } else {
-        setError('An error occurred');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  console.log("data", data)
   if (!data) return
   return (
     <main>
@@ -57,13 +38,13 @@ const Home = () => {
                     {t('about-company')}
                   </h2>
                   <div className="lc-about-desc" data-aos="fade-right">
-                    {data.about_company.text_ru}
+                    {getText(data.about_company, i18n.language)}
                   </div>
                   <Link href="/about" className="lc-btn-dark-transparent lc-color-reverse" data-aos="fade-right">
                     <span>{t('more-details')}</span>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M14.43 5.93005L20.5 12.0001L14.43 18.0701" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
-                      <path d="M3.49996 12H20.33" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />
+                      <path d="M14.43 5.93005L20.5 12.0001L14.43 18.0701" stroke="white" strokeWidth="1.5" stroke-miterlimit="10" strokeLinecap="round" stroke-linejoin="round" />
+                      <path d="M3.49996 12H20.33" stroke="white" strokeWidth="1.5" stroke-miterlimit="10" strokeLinecap="round" stroke-linejoin="round" />
                     </svg>
                   </Link>
                 </div>
